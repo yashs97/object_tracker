@@ -2,4 +2,4 @@
 Authors: Sterling James and Yash Shah
 
 
-### Use (Segflow)[https://github.com/JingchunCheng/SegFlow] to calculate optical flow
+### Use MobileNet to detect objects and then track them using the SORT (Simple Online RealTime Tracking) algorithm.
