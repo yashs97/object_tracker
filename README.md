@@ -2,4 +2,4 @@
 Authors: Sterling James and Yash Shah
 
 
-### Use MobileNet to detect objects and then track them using the SORT (Simple Online RealTime Tracking) algorithm.
+### Use MobileNet to detect objects and then track them using the SORT (Simple Online RealTime tracking) algorithm.
