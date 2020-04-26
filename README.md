@@ -1,26 +1,29 @@
-# Object Tracker on a Raspberry Pi
-
-Object Tracking using a Raspberry Pi 4 and a camera on a Pan Tilt controlled by a Servomotor. 
+Object Tracking using a Raspberry Pi 4 and a camera on a Pan-Tilt Hat controlled by a servomotor. 
 
 ## Table of contents
 * [General info](#general-info)
-* [Technologies](#technologies)
+* [Parts List](#parts-list)
 * [Setup](#setup)
 
 ## General info
-An object is first detcted using the Mobilenet SSD object detector and tracked using OpenCV's built in Optical Flow algorithm. The position feedback is sent to the controller for the camera so that it can track the object as long as it is in its line of sight. A red LED on the camera will indicate whether an  object is currently being tracked.
+An object is first detcted using the Mobilenet SSD object detector and tracked using OpenCV's built in Optical Flow algorithm.
+The position feedback is sent to the servomotors so that it can track the object as long as it is in the camera's line of sight. 
+A red LED indicate whether an  object is currently being tracked.
 
-## Technologies
-Project is created with:
-* Lorem version: 12.3
-* Ipsum version: 2.33
-* Ament library version: 999
+## Parts List
+Project was created with:
+* Raspberry Pi 4
+* Camera which is compatible with RPI4
+* 3D Printed Pan-Tilt Hat
+* Servomotors
+* Red LED
 	
 ## Setup
-To run this project, install it locally using npm:
+To run this project, follow these installation steps in order on a Raspberry Pi 4:
 
 ```
-$ cd ../lorem
-$ npm install
-$ npm start
+$ git clone https://github.com/yshah43/object_tracker.git
+$ cd object_tracker
+$ pip install requirements.txt
+$ python main.py
 ```
