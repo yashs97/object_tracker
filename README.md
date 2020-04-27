@@ -41,9 +41,8 @@ $ python multi_label_tracking.py
 ## Tracking Algorithm
 
 Object tracking is a 2 step process where you first detect an object and then track it.
-Mobilenet SSD is the backbone architecture for the detector and was implemented using [OpenCV](#https://github.com/opencv/opencv/wiki/Deep-Learning-in-OpenCV)
-Optical flow is then used to track the detected object using the [Lucas-Kanade Method](#https://github.com/opencv/opencv/wiki/Deep-Learning-in-OpenCV)
+Mobilenet SSD is the backbone architecture for the detector and was implemented using [OpenCV](#https://github.com/opencv/opencv/wiki/Deep-Learning-in-OpenCV). Optical flow then tracks the detected object using the [Lucas-Kanade Method](#https://docs.opencv.org/3.4/d4/dee/tutorial_optical_flow.html)
 
 <p align="center">
-  <img src="https://github.com/yshah43/object_tracker/blob/master/tracking_algo.png">
+  <img src="tracking_algo.png">
 </p>
