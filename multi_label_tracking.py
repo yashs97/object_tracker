@@ -1,4 +1,4 @@
-#track multiple objects and not meant to run 
+#track multiple objects and not meant to run on RPI without hardware acceleration
 import numpy as np
 import argparse
 import cv2 
@@ -55,8 +55,6 @@ while True:
         detections = net.forward()
         # object to be tracked's probability should be greater than the threshold
         idx = np.argwhere(detections[0, 0, :, 2] >= args.thr)
-        num_detections = len(idx)
-        num_centroids = 0
         centroids = np.zeros([1, 1, 2], dtype=np.float32)
         for i in range(0,len(idx)):     
 
@@ -88,7 +86,6 @@ while True:
 
             # draw the centroid on the frame
             frame = cv2.circle(frame, (int(x),int(y)), 15, (0,0,255), -1)
-            num_centroids += 1
             tracking_started = True
             tracker_count += 1
             if i == 0:
@@ -102,7 +99,7 @@ while True:
 
 
     else:   # track an object only if it has been detected
-        if centroids.sum() != 0 and tracking_started and num_detections:
+        if centroids.sum() != 0 and tracking_started:
             next1, st, error = cv2.calcOpticalFlowPyrLK(prev_frame, frame,
                                             centroids, None, **lk_params)
 
@@ -114,11 +111,10 @@ while True:
                 a, b = new.ravel()
                 c, d = old.ravel()
                 distance = np.sqrt((a-c)**2 + (b-d)**2)
-                # distance between new and old points should fall within
-                # specific values for 2 points to be same the object
-                if 20 < distance < 200 and num_centroids <= num_detections:
+                # distance between new and old points should be less than
+                # 200 for 2 points to be same the object
+                if distance < 200 :
                     frame = cv2.circle(frame, (a, b), 15, (0,0,255), -1)
-                    num_centroids += 1
 
             centroids = good_new.reshape(-1, 1, 2)
 

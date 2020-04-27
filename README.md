@@ -1,4 +1,4 @@
-Object Tracking using a Raspberry Pi 4 and a camera on a Pan-Tilt Hat controlled by a servomotor. 
+Object Tracking using a Raspberry Pi 4 and Adafruit Pan-Tilt Kit. 
 
 ## Table of Contents
 * [Overview](#overview)
@@ -27,12 +27,12 @@ $ cd object_tracker
 $ pip install requirements.txt
 ```
 
-To track objects of a single category, run
+To track objects of a single category, run:
 ```
 $ python single_label_tracking.py
 ```
 
-To track objects of multiple categories, run (NOT RECOMMENDED to run on a RPI)
+To track objects of multiple categories, run: (NOT RECOMMENDED to run on a RPI)
 ```
 $ python multi_label_tracking.py
 ```

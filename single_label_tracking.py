@@ -111,9 +111,9 @@ while True:
                 a, b = new.ravel()
                 c, d = old.ravel()
                 distance = np.sqrt((a-c)**2 + (b-d)**2)
-                # distance between new and old points should fall within
-                # specific values for 2 points to be same the object
-                if 20 < distance < 200: 
+                # distance between new and old points should be less than
+                # 200 for 2 points to be same the object
+                if distance < 200: 
                     frame = cv2.circle(frame, (a, b), 15, (0,0,255), -1)
             centroids = good_new.reshape(-1, 1, 2)
 
