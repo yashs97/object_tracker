@@ -20,15 +20,30 @@ Project was created with:
 * Red LED
 	
 ## Setup
-To run this project, follow these installation steps in order on a Raspberry Pi 4:
+Installation steps on a Raspberry Pi 4:
 
 ```
 $ git clone https://github.com/yshah43/object_tracker.git
 $ cd object_tracker
 $ pip install requirements.txt
-$ python main.py
+```
+
+To track objects of one category, run
+```
+$ python single_label_tracking.py
+```
+
+To track objects of multiple categories, run
+```
+$ python multi_label_tracking.py
 ```
 
 ## Tracking Algorithm
 
-![alt text](https://github.com/yshah43/object_tracker/blob/master/tracking_algo.png)
+Object tracking is a 2 step process where you first detect an object and then track it.
+Mobilenet SSD is the backbone architecture for the detector and was implemented using [OpenCV](#https://github.com/opencv/opencv/wiki/Deep-Learning-in-OpenCV)
+Optical flow is then used to track the detected object using the [Lucas-Kanade Method](#https://github.com/opencv/opencv/wiki/Deep-Learning-in-OpenCV)
+
+<p align="center">
+  <img src="https://github.com/yshah43/object_tracker/blob/master/tracking_algo.png">
+</p>
