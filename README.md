@@ -15,8 +15,7 @@ A red LED indicate whether an  object is currently being tracked.
 Project was created with:
 * Raspberry Pi 4
 * Camera which is compatible with RPI4
-* 3D Printed Pan-Tilt Hat
-* Servomotors
+* Adafruit Pan-Tilt Kit
 * Red LED
 	
 ## Setup
@@ -28,12 +27,12 @@ $ cd object_tracker
 $ pip install requirements.txt
 ```
 
-To track objects of one category, run
+To track objects of a single category, run
 ```
 $ python single_label_tracking.py
 ```
 
-To track objects of multiple categories, run
+To track objects of multiple categories, run (NOT RECOMMENDED to run on a RPI)
 ```
 $ python multi_label_tracking.py
 ```
@@ -41,8 +40,14 @@ $ python multi_label_tracking.py
 ## Tracking Algorithm
 
 Object tracking is a 2 step process where you first detect an object and then track it.
-Mobilenet SSD is the backbone architecture for the detector and was implemented using [OpenCV](#https://github.com/opencv/opencv/wiki/Deep-Learning-in-OpenCV). Optical flow then tracks the detected object using the [Lucas-Kanade Method](#https://docs.opencv.org/3.4/d4/dee/tutorial_optical_flow.html)
+Mobilenet SSD is the backbone architecture for the detector and was implemented using [OpenCV's Deep Neural Net Module](https://github.com/opencv/opencv/wiki/Deep-Learning-in-OpenCV). Optical flow then tracks the detected object using the [Lucas-Kanade Method](https://docs.opencv.org/3.4/d4/dee/tutorial_optical_flow.html).
+
+
+Real time performance on a Rasperry Pi without a hardware accelerator was achieved by:
+* Detecting new objects every 10th frame 
+* Tracking the detected object using Optical Flow
+* Detecting and tracking only one category (person by default, check the .py files for other options.
 
 <p align="center">
-  <img src="tracking_algo.png">
+<img  height = "500" src="tracking_algo.png">
 </p>
