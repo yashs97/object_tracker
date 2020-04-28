@@ -3,14 +3,6 @@ Object Tracking using a Raspberry Pi 4.
 * [Pi View of the Demo](https://drive.google.com/open?id=1EuTZfTK4OLIzXOUKoZkWMZ2OpnGOkIYl)
 * [Servo View of the Demo](https://drive.google.com/file/d/1CqaZqvUET-iiFShD1uzIiYLTDpLR0OoJ/view?usp=sharing)
 
-<div class="row">
-  <div class="column">
-    <video src="pi_view.mp4" style="width:100%">
-  </div>
-  <div class="column">
-    <video src="servo_view.mp4" style="width:100%">
-  </div>
-</div>
 
 ## Table of Contents
 * [Overview](#overview)
@@ -79,10 +71,12 @@ The schematic on the left below shows all circuitry associated with driving the 
 
 <div class="row">
   <div class="column">
-    <img src="servo_circuit.png" style="width:50%">
+    <img src="servo_circuit.png" height="500" width="400">
+
   </div>
   <div class="column">
-    <img src="custom board.png" style="width:50%">
+    <img src="custom board.png" height="500" width="400">
   </div>
 </div>
+
 
