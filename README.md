@@ -66,11 +66,11 @@ The hardware for this project consists of a RPI 4, an adafruit pan-tilt servo mo
 For the control system, an error signal in both x and y directions are computed from the centroid found by the object tracker compared with the center of the image. This signal is modulated by a proportional gain of kx = 0.01 and ky = 0.01. The starting positions of x = 0d and y = -30d were also determined experimentally
 
 These values were found experimentally. The response time is slightly on the slower side, and this could be improved by adding an integrator to the control system. Due to time constraints and the slightly varying update time of the object tracker, this was not pursued. This could be a future work section.
-
-<p align="center">Servo Circuitry:
+<p> Servo Circuitry:</p>
+<p align="center">
 <img  height = "500" src="servo_circuit.png">
 </p>
-<p align="centre"> Custom Peripheral Board:</p>
+<p> Custom Peripheral Board:</p>
 <p align="center">
 <img  height = "500" src="custom board.png">
 </p>
