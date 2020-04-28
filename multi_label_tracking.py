@@ -33,7 +33,6 @@ net = cv2.dnn.readNetFromCaffe("mobilenet/MobileNetSSD_deploy.prototxt", "mobile
 fps = FPS().start()
 total_frames = 1
 _, prev_frame = cap.read()
-tracker_count = 0
 tracking_started = False
 
 if args.output:
@@ -43,7 +42,6 @@ if args.output:
 while True:
     _,frame = cap.read()
     if frame is None: #end of video file
-        print(tracker_count)
         break
     frame_resized = cv2.resize(frame,(300,300)) # reshaping frame to (300,300)
     # running the object detector every nth frame 
@@ -87,7 +85,6 @@ while True:
             # draw the centroid on the frame
             frame = cv2.circle(frame, (int(x),int(y)), 15, (0,0,255), -1)
             tracking_started = True
-            tracker_count += 1
             if i == 0:
                 centroids[0,0,0] = x
                 centroids[0,0,1] = y

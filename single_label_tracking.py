@@ -1,12 +1,29 @@
 import numpy as np
 import argparse
-import cv2 
+import cv2
 import time
-from imutils.video import FPS 
+from imutils.video import FPS
+from servo_control import Servo
+import matplotlib.pyplot as 
+import csv
 
 
+def new_position(xerr,yerr,xpos,ypos):
+    kx = 0.01
+    ky = 0.001
+    x_new = -kx*xerr + xpos
+    y_new = -ky*yerr + ypos
+    return x_new.item(), y_new.item()
 
-# construct the argument parse 
+S = Servo()
+S.turn_on()
+S.set_Xangle(0)
+S.set_Yangle(-30)
+curx = 0
+cury = 0
+
+
+# construct the argument parse
 parser = argparse.ArgumentParser(description='Script to run Object trackers using opencv')
 parser.add_argument("--video", help="path to video file. If empty, camera's stream will be used")
 parser.add_argument("--thr", default=0.6, type=float, help="confidence threshold to filter out weak detections")
@@ -37,7 +54,9 @@ fps = FPS().start()
 total_frames = 1
 _, prev_frame = cap.read()
 tracker_count = 0
-
+with open('centroid_values.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(["xerr", "yerr", "curx","cury"])
 if args.output:
     fourcc = cv2.VideoWriter_fourcc(*"MJPG")
     writer = cv2.VideoWriter(args.output, fourcc, 30,(prev_frame.shape[1], prev_frame.shape[0]), True)
@@ -50,7 +69,7 @@ while True:
     frame_resized = cv2.resize(frame,(300,300)) # reshaping frame to (1, 3, 300, 300)
     # run object detector every args.frame_count frame
     if total_frames % int(args.frame_count)-1 == 0:
-        blob = cv2.dnn.blobFromImage(frame_resized, 0.007843, 
+        blob = cv2.dnn.blobFromImage(frame_resized, 0.007843,
             (frame_resized.shape[1],frame_resized.shape[0]), (127.5, 127.5, 127.5), crop = False)
         net.setInput(blob)
         detections = net.forward()
@@ -58,35 +77,35 @@ while True:
         idx = np.argwhere(detections[0, 0, :, 2] >= args.thr)
         centroids = np.zeros([1, 1, 2], dtype=np.float32)
         count = 0
-        for i in range(0,len(idx)):     
+        for i in range(0,len(idx)):
             tracking_id = int(detections[0, 0, idx[i], 1])
-            if labels[tracking_id] == 'person': 
+            if labels[tracking_id] == 'person':
 
                 confidence = detections[0, 0, idx[i], 2]
-                # Object location 
-                xLeftBottom = int(detections[0, 0, idx[i], 3] * frame_resized.shape[1] ) 
+                # Object location
+                xLeftBottom = int(detections[0, 0, idx[i], 3] * frame_resized.shape[1] )
                 yLeftBottom = int(detections[0, 0, idx[i], 4] * frame_resized.shape[0])
                 xRightTop   = int(detections[0, 0, idx[i], 5] * frame_resized.shape[1] )
                 yRightTop   = int(detections[0, 0, idx[i], 6] * frame_resized.shape[0])
-                
+
                 # Factor for scale to original size of frame
                 heightFactor = frame.shape[0]/frame_resized.shape[0]
                 widthFactor = frame.shape[1]/frame_resized.shape[1]
 
                 # Scale object detection to frame
-                xLeftBottom = int(widthFactor * xLeftBottom) 
+                xLeftBottom = int(widthFactor * xLeftBottom)
                 yLeftBottom = int(heightFactor * yLeftBottom)
                 xRightTop   = int(widthFactor * xRightTop)
                 yRightTop   = int(heightFactor * yRightTop)
 
-                # print class and confidence 
-                label = labels[tracking_id] +": "+ str(confidence)             
-                print(label) 
+                # print class and confidence
+                label = labels[tracking_id] +": "+ str(confidence)
+                print(label)
 
                 #centroid coordinates
                 x = (xLeftBottom + xRightTop)/2
                 y = (yLeftBottom + yRightTop)/2
-                
+
                 if count == 0:
                     centroids[0,0,0] = x
                     centroids[0,0,1] = y
@@ -111,9 +130,9 @@ while True:
                 a, b = new.ravel()
                 c, d = old.ravel()
                 distance = np.sqrt((a-c)**2 + (b-d)**2)
-                # distance between new and old points should be less than
-                # 200 for 2 points to be same the object
-                if distance < 200: 
+                # distance between new and old points should fall within
+                # specific values for 2 points to be same the object
+                if 20 < distance < 200:
                     frame = cv2.circle(frame, (a, b), 15, (0,0,255), -1)
             centroids = good_new.reshape(-1, 1, 2)
 
@@ -129,5 +148,16 @@ while True:
     prev_frame = frame
     # print('centre position of image: ',(frame.shape[0]/2,frame.shape[1]/2))
     # print('centroid of image: ',centroids)
-    if cv2.waitKey(1) >= 0:  # Break with ESC 
+    if centroids.sum() != 0:
+        xerr = centroids[0,0,0] - frame.shape[0]/2
+        yerr = centroids[0,0,1] - frame.shape[1]/2
+        curx, cury = new_position(xerr, yerr, curx,cury)
+        with open('centroid_values.csv', 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow([xerr, yerr, curx,cury])
+        S.set_Xangle(curx)
+        S.set_Yangle(cury)
+
+    if cv2.waitKey(1) >= 0:  # Break with ESC
+        S.turn_off()
         break
