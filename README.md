@@ -71,11 +71,11 @@ The schematic on the left below shows all circuitry associated with driving the 
 
 <div class="row">
   <div class="column">
-    <img src="servo_circuit.png" height="500" width="400">
+    <img src="servo_circuit.png" height="400" width="400">
 
   </div>
   <div class="column">
-    <img src="custom board.png" height="500" width="400">
+    <img src="custom board.png" height="400" width="400">
   </div>
 </div>
 
