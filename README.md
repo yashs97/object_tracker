@@ -12,7 +12,7 @@ Object Tracking using a Raspberry Pi 4.
 ## Table of Contents
 * [Overview](#overview)
 * [Parts List](#parts-list)
-* [Installation and Setup](#setup)
+* [Installation and Setup](#installation-and-setup)
 * [Tracking Algorithm](#tracking-algorithm)
 * [Hardware Setup](#hardware-setup)
 
@@ -76,10 +76,10 @@ The schematic on the left below shows all circuitry associated with driving the 
 
 <div class="row">
   <div class="column">
-    <img src="servo_circuit.png" style="width:100%">
+    <img src="servo_circuit.png" style="width:50%">
   </div>
   <div class="column">
-    <img src="custom board.png" style="width:100%">
+    <img src="custom board.png" style="width:50%">
   </div>
 </div>
 
