@@ -67,18 +67,17 @@ For the control system, an error signal in both x and y directions are computed 
 
 These values were found experimentally. The response time is slightly on the slower side, and this could be improved by adding an integrator to the control system. Due to time constraints and the slightly varying update time of the object tracker, this was not pursued. This could be a future work section.
 
+<p align = "center"> Servo Circuitry and Custom Peripheral Board: </p>
 
+<div>
+    <div>
+        <img src="servo_circuit.png" height = "400" width = "400">
+    </div>
+    <div>
+        <img src="custom board.png" height = "400" width = "400">
+    </div>
+</div>
 
-<p align="center">
-  Circuitry for driving the servos:
-<img  height = "500" src="servo_circuit.png">
-</p>
-
-
-<p align="center">
-  Custom Peripheral Baord:
-<img  height = "500" src="custom board.png">
-</p>
 
 
 
