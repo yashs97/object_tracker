@@ -70,7 +70,8 @@ These values were found experimentally. The response time is slightly on the slo
 <p align="center">Servo Circuitry:
 <img  height = "500" src="servo_circuit.png">
 </p>
-<p align="center">Custom Peripheral Board:
+<p align="centre"> Custom Peripheral Board:</p>
+<p align="center">
 <img  height = "500" src="custom board.png">
 </p>
   
