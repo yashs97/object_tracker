@@ -23,7 +23,7 @@ Project was created with:
 * Adafruit Pan-Tilt Servo Mount
 * IR-Cut Pi Camera
 * Custom Board
-* Red LED
+* RGB LED
 	
 ## Installation and Setup
 Installation steps on a Raspberry Pi 4:
