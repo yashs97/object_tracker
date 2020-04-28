@@ -4,23 +4,26 @@ import cv2
 import time
 from imutils.video import FPS
 from servo_control import Servo
-import matplotlib.pyplot as 
 import csv
+import RPi.GPIO as GPIO
 
 
 def new_position(xerr,yerr,xpos,ypos):
     kx = 0.01
-    ky = 0.001
+    ky = 0.01
     x_new = -kx*xerr + xpos
     y_new = -ky*yerr + ypos
     return x_new.item(), y_new.item()
 
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(17,GPIO.OUT)
+GPIO.setup(27,GPIO.OUT)
 S = Servo()
 S.turn_on()
 S.set_Xangle(0)
 S.set_Yangle(-30)
 curx = 0
-cury = 0
+cury = -30
 
 
 # construct the argument parse
@@ -55,8 +58,8 @@ total_frames = 1
 _, prev_frame = cap.read()
 tracker_count = 0
 with open('centroid_values.csv', 'w', newline='') as file:
-    writer = csv.writer(file)
-    writer.writerow(["xerr", "yerr", "curx","cury"])
+    writer1 = csv.writer(file)
+    writer1.writerow(["xerr", "yerr", "curx","cury"])
 if args.output:
     fourcc = cv2.VideoWriter_fourcc(*"MJPG")
     writer = cv2.VideoWriter(args.output, fourcc, 30,(prev_frame.shape[1], prev_frame.shape[0]), True)
@@ -149,14 +152,19 @@ while True:
     # print('centre position of image: ',(frame.shape[0]/2,frame.shape[1]/2))
     # print('centroid of image: ',centroids)
     if centroids.sum() != 0:
+        GPIO.output(17,GPIO.LOW)
+        GPIO.output(27,GPIO.HIGH)
         xerr = centroids[0,0,0] - frame.shape[0]/2
         yerr = centroids[0,0,1] - frame.shape[1]/2
         curx, cury = new_position(xerr, yerr, curx,cury)
-        with open('centroid_values.csv', 'w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow([xerr, yerr, curx,cury])
+        with open('centroid_values.csv', 'a+', newline='') as file:
+            writer1 = csv.writer(file)
+            writer1.writerow([xerr, yerr, curx,cury])
         S.set_Xangle(curx)
         S.set_Yangle(cury)
+    else:
+        GPIO.output(17,GPIO.HIGH)
+        GPIO.output(27,GPIO.LOW)
 
     if cv2.waitKey(1) >= 0:  # Break with ESC
         S.turn_off()
