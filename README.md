@@ -1,13 +1,14 @@
-Object Tracking using a Raspberry Pi 4 and Adafruit Pan-Tilt Kit. 
+Object Tracking using a Raspberry Pi 4. 
 
 ## Table of Contents
 * [Overview](#overview)
 * [Parts List](#parts-list)
-* [Setup](#setup)
+* [Installation and Setup](#setup)
 * [Tracking Algorithm](#tracking-algorithm)
+* [Hardware Setup](#hardware-setup)
 
 ## Overview
-An object is first detcted using the Mobilenet SSD object detector and tracked using OpenCV's built in Optical Flow algorithm.
+An object is first detcted using the Mobilenet SSD object detector and tracked using OpenCV's built in Optical Flow method.
 The position feedback is sent to the servomotors so that it can track the object as long as it is in the camera's line of sight. 
 A red LED indicate whether an  object is currently being tracked.
 
@@ -15,10 +16,12 @@ A red LED indicate whether an  object is currently being tracked.
 Project was created with:
 * Raspberry Pi 4
 * Camera which is compatible with RPI4
-* Adafruit Pan-Tilt Kit
+* Adafruit Pan-Tilt Servo Mount
+* IR-Cut Pi Camera
+* Custom Board
 * Red LED
 	
-## Setup
+## Installation and Setup
 Installation steps on a Raspberry Pi 4:
 
 ```
@@ -30,11 +33,6 @@ $ pip install requirements.txt
 To track objects of a single category, run:
 ```
 $ python single_label_tracking.py
-```
-
-To track objects of multiple categories, run: (NOT RECOMMENDED to run on a RPI)
-```
-$ python multi_label_tracking.py
 ```
 
 ## Tracking Algorithm
