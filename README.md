@@ -23,7 +23,6 @@ A RGB LED indicate whether an  object is currently being tracked.
 ## Parts List
 Project was created with:
 * Raspberry Pi 4
-* Camera which is compatible with RPI4
 * Adafruit Pan-Tilt Servo Mount
 * IR-Cut Pi Camera
 * Custom Board
