@@ -16,7 +16,7 @@ Object Tracking using a Raspberry Pi 4.
 * [Credits](#credits)
 
 ## Overview
-An object is first detcted using the Mobilenet SSD object detector and tracked using OpenCV's built in Optical Flow method.
+An object is first detcted using the Mobilenet SSD object detector and tracked using OpenCV's built in Optical Flow method. Optical flow is nothing but motion of objects between consecutive frames.
 The position feedback is sent to the servomotors so that it can track the object as long as it is in the camera's line of sight. 
 A RGB LED indicate whether an  object is currently being tracked.
 
@@ -60,8 +60,8 @@ All the code can be found in [single_label_tracking.py file](single_label_tracki
 <img  height = "500" src="tracking_algo.png">
 </p>
 
-Note: [Multi-label tracking algorithm](multi_label_tracking.py) can track objects of 20 different categories but the hardware implementation for it is outside the scope of this project and is unfeasible to run it on a RPI.
-Here is an [example demo](https://drive.google.com/file/d/1P_rtwbhCzP93P-e9JhBeYXKoz-DjD-5f/view?usp=sharing) on a Macbook Pro.
+Note: [Multi-label tracking algorithm](multi_label_tracking.py) can track objects of 20 different categories but the hardware implementation for it is outside the scope of this project and is unfeasible to run on a RPI.
+Here is an [example demo](https://drive.google.com/file/d/1P_rtwbhCzP93P-e9JhBeYXKoz-DjD-5f/view?usp=sharing)  which was ran on a Macbook Pro.
 
 
 
