@@ -3,7 +3,8 @@ Object Tracking using a Raspberry Pi 4.
 
 * [Video of the the Pi Screen during Demo](https://drive.google.com/open?id=1EuTZfTK4OLIzXOUKoZkWMZ2OpnGOkIYl)
 * [Video of the Servo during Demo](https://drive.google.com/file/d/1CqaZqvUET-iiFShD1uzIiYLTDpLR0OoJ/view?usp=sharing)
-* [Presentation]()
+* [Link to Google Slides](https://docs.google.com/presentation/d/12G5F1KdZLiuIfz5qq8HF9dvrJ2lQuAD1xqTEcP2Me3o/edit?usp=sharing)
+* [Presentation Video](https://drive.google.com/file/d/130o2YdwLg2BJ1cepa1x7kVlUzDuutPOH/view?usp=sharing)
 
 
 ## Table of Contents
@@ -66,7 +67,9 @@ Here is an [example demo](https://drive.google.com/file/d/1P_rtwbhCzP93P-e9JhBeY
 
 ## Hardware Setup
 
-The hardware for this project consists of a RPI 4, an adafruit pan-tilt servo mount, a ir-cut pi camera, and a custom board. The board is similar to some of the adafruit pi hats in that it uses a PCA9685 (a) i2c led driver to send pwm signals. There are dedicated connections on the top of the board to drive the servos (c), but they do not work for some reason and we do not have any test equipment (due to COVID19), so the servos are driven by a  TB6612 h-bridge driver (b) connected to the pwm controller. This was intended for driving dc motors and is functionally identical to the adafruit DC motor hat, but the servos are controllable through it so as long as it works right? Custom code was written to drive the servos in servo_control.py
+The hardware for this project consists of a RPI 4, an adafruit pan-tilt servo mount, a ir-cut pi camera, and a custom board. The board is similar to some of the adafruit pi hats in that it uses a PCA9685 (a) i2c led driver to send pwm signals. There are dedicated connections on the top of the board to drive the servos (c), but they do not work for some reason and we do not have any test equipment (due to COVID19), so the servos are driven by a  TB6612 h-bridge driver (b) connected to the pwm controller. This was intended for driving dc motors and is functionally identical to the adafruit DC motor hat, but the servos are controllable through it so as long as it works right? Custom code was written to drive the servos in servo_control.py.
+
+The Pi and the Camera were placed on a 3D Printed Mount.
 
 For the control system, an error signal in both x and y directions are computed from the centroid found by the object tracker compared with the center of the image. This signal is modulated by a proportional gain of kx = 0.01 and ky = 0.01. The starting positions of x = 0d and y = -30d were also determined experimentally
 
