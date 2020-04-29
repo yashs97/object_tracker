@@ -89,9 +89,9 @@ This is a potential idea for further work.
   
 
 ## Credits:
-* Object Detector in OpenCV - https://github.com/opencv/opencv/wiki/Deep-Learning-in-OpenCV
-* Optical Flow - https://docs.opencv.org/3.4/d4/dee/tutorial_optical_flow.html
-* Inspiration for our custom board - https://learn.adafruit.com/adafruit-dc-and-stepper-motor-hat-for-raspberry-pi/overview
+* Object Detector in OpenCV - [https://github.com/opencv/opencv/wiki/Deep-Learning-in-OpenCV](https://github.com/opencv/opencv/wiki/Deep-Learning-in-OpenCV)
+* Optical Flow - [https://docs.opencv.org/3.4/d4/dee/tutorial_optical_flow.html](https://docs.opencv.org/3.4/d4/dee/tutorial_optical_flow.html)
+* Inspiration for our custom board - [https://learn.adafruit.com/adafruit-dc-and-stepper-motor-hat-for-raspberry-pi/overview](https://learn.adafruit.com/adafruit-dc-and-stepper-motor-hat-for-raspberry-pi/overview)
 
 
 
