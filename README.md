@@ -4,10 +4,6 @@ Object Tracking using a Raspberry Pi 4.
 * [Video of the the Pi Screen during Demo](https://drive.google.com/open?id=1EuTZfTK4OLIzXOUKoZkWMZ2OpnGOkIYl)
 * [Video of the Servo during Demo](https://drive.google.com/file/d/1CqaZqvUET-iiFShD1uzIiYLTDpLR0OoJ/view?usp=sharing)
 * [Software Implementation of Multilabel Tracking](https://drive.google.com/file/d/1P_rtwbhCzP93P-e9JhBeYXKoz-DjD-5f/view?usp=sharing) 
-* [Link to Google Slides](https://docs.google.com/presentation/d/12G5F1KdZLiuIfz5qq8HF9dvrJ2lQuAD1xqTEcP2Me3o/edit?usp=sharing)
-* [Presentation Video](https://drive.google.com/file/d/130o2YdwLg2BJ1cepa1x7kVlUzDuutPOH/view?usp=sharing)
-
-
 
 ## Table of Contents
 * [Overview](#overview)
